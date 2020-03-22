@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import os from 'os';
+import fs from 'fs';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+export default class App extends React.Component {
+
+
+  clickHandler = () => {
+    console.log('hello');
+    console.log(os.hostname());
+
+    fs.readdir("/tmp/", function (err, files) {
+      if (err) {
+        return console.error(err);
+      }
+      files.forEach(function (file) {
+        console.log(file);
+      });
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        Hello world<br></br>
+        <button onClick={this.clickHandler}>clickme</button>
+      </div>
+    );
+  }
 }
-
-export default App;
